@@ -1,16 +1,25 @@
 #!/usr/bin/env python
+
+# sudo pip install flask
+# sudo chmod 777 /dev/vchiq
+# sudo raspi-config and set camera to enabled
+# sudo modprobe bcm2835-v4l2 to get picamera to work in pygame window
+# ./startStream.sh . &
+# https://blog.miguelgrinberg.com/post/video-streaming-with-flask
+# https://github.com/miguelgrinberg/flask-video-streaming
+
 from importlib import import_module
 import os
 from flask import Flask, render_template, Response
 
 # import camera driver
-if os.environ.get('CAMERA'):
-    Camera = import_module('camera_' + os.environ['CAMERA']).Camera
-else:
-    from camera import Camera
+#if os.environ.get('CAMERA'):
+#    Camera = import_module('camera_' + os.environ['CAMERA']).Camera
+#else:
+#    from camera import Camera
 
 # Raspberry Pi camera module (requires picamera package)
-# from camera_pi import Camera
+from camera_pi import Camera
 
 app = Flask(__name__)
 
